@@ -1,0 +1,225 @@
+Conversation opened. 1 read message. 
+
+Skip to content
+Using Gmail with screen readers
+in:sent 
+15 of 15
+Rakhi gift, apart from Mahabharat and ek aur koisi to book
+
+Vansh Dixit <vanshdixit06@gmail.com>
+Attachments
+Wed, Sep 1, 2021, 11:38 PM
+to jigyasadixit2001
+
+
+ One attachment
+  •  Scanned by Gmail
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueton coorporation</title>
+    <style type="text/css">
+        body {
+            background-color: black;
+            /* background: linear-gradient(black, white); */
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .audio {
+            width: 97%;
+            height: 94vh;
+            /* border-radius: 20px; */
+            padding: 20px;
+            /* border: 2px solid #757575; */
+            margin: 0px auto;
+            background: linear-gradient(purple, red);
+            /* background: transparent; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .audio audio {
+            outline: none;
+            text-align: center;
+            margin-top: 103px;
+            margin-left: 570px;
+        }
+
+        #strtbtn {
+            width: 120px;
+            /* background-color: black; */
+            background-color: #757575;
+            border: 2px solid white;
+            color: black;
+            border-radius: 12px;
+            height: 50px;
+            margin-left: 655px;
+            margin-top: 230px;
+            cursor: pointer;
+            transition-property: background;
+            transition-duration: 0.6s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bolder;
+            text-align: center;
+            /* margin: auto; */
+        }
+
+        #strtbtn:hover {
+            background-color: white;
+            color: black;
+            font-weight: bolder;
+            border: 2px solid black;
+        }
+
+        #recording {
+            display: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin-top: 244px;
+            margin-left: 654px;
+        }
+
+        #nextbtn {
+            background: orange;
+        }
+
+        #nextbtn:hover {
+            background-color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="audio" id="audio">
+        <h1
+            style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: white; text-align: center;">
+            Blueton Coorporation</h1>
+        <h2 id="change"
+            style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; text-align: center; margin-top: 12px; color: white; font-weight: lighter;">
+            <strong>Speak this : </strong>"Hii my name is vansh dixit" and then wait for a bit.</h2>
+        <h1 id="recording">Recording....</h1>
+        <button id="strtbtn">Start recording</button>
+    </div>
+    <script type="text/javascript">
+        var btn2 = document.getElementById('strtbtn');
+        btn2.addEventListener('click', function () {
+            let rec = document.getElementById('recording');
+            rec.style.display = 'block';
+            btn2.style.display = "none";
+            var device = navigator.mediaDevices.getUserMedia({ audio: true });
+            var items = [];
+            device.then(stream => {
+                var recorder = new MediaRecorder(stream);
+                recorder.ondataavailable = e => {
+                    items.push(e.data);
+                    if (recorder.state == 'inactive') {
+                        var blob = new Blob(items, { type: "audio/webm" });
+                        var audio = document.getElementById('audio');
+                        var mainaudio = document.createElement('audio');
+                        mainaudio.setAttribute('controls', 'controls');
+                        rec.style.display = 'none';
+                        
+                        // ----------------------Every thing needed for the Next sentence button-----------------
+                        
+                        var btn = document.createElement('button');
+                        btn.type = 'reload';
+                        btn.innerText = 'Next Sentence';
+                        btn.style.width = '160px';
+                        // btn.style.margin = '320px 120px';
+                        // btn.style.marginTop = "120px"
+                        btn.style.height = '40px';
+                        btn.style.borderRadius = '12px';
+                        btn.style.outline = 'none';
+                        btn.style.border = '2px solid white';
+                        btn.style.backgroundColor = 'black';
+                        btn.style.color = 'white';
+                        btn.style.cursor = 'pointer';
+                        btn.style.marginTop = '20px';
+                        btn.style.marginLeft = '560px'
+                        btn.id = 'nextbtn';
+                        btn.style.display = 'block';
+                        btn.addEventListener('click', function () {
+                            // mainaudio.stop();
+                            rec.style.display = 'block';
+                            mainaudio.style.display = 'none';
+                            btn.style.display = 'none';
+                            btn3.style.display = 'none';
+                            recorder.start(100);
+                            setTimeout(() => {
+                                recorder.stop();
+                            }, 10000);
+                            let change = document.getElementById('change');
+                            if(change.innerText != 'Speak this : "Hii my name is vansh dixit" and then wait for a bit.'){
+                                change.innerText = 'Speak this : "Hii my name is vansh dixit" and then wait for a bit.'
+                            }
+                            else{
+                                change.innerHTML = '<strong>Speak this : </strong>"The retail industry will be transformed because of new technologies like Artificial intelligence" and then wait for a bit.'
+                            }
+
+
+                            items = [];
+                        });
+
+                        // -------------------------------------------------------------------------------------------------
+
+                        // ----------------------------------Every thing needed for the retry Button--------------------------------
+
+                        var btn3 = document.createElement('button');
+                        btn3.innerText = 'Retry'
+                        btn3.type = 'reload';
+                        btn3.style.width = '160px';
+                        btn3.style.margin = '0px 0px';
+                        btn3.style.height = '40px';
+                        btn3.style.borderRadius = '12px';
+                        btn3.style.outline = 'none';
+                        btn3.style.border = '2px solid white';
+                        btn3.style.backgroundColor = 'black';
+                        btn3.style.color = 'white';
+                        btn3.style.cursor = 'pointer';
+                        btn3.style.marginTop = '-40px';
+                        btn3.style.marginLeft = '724px'
+                        btn3.id = 'nextbtn';
+                        btn3.style.display = 'block';
+                        btn3.addEventListener('click', function(){
+                            recorder.start(100);
+                            setTimeout(()=>{
+                                recorder.stop();
+                            }, 10000);
+                            rec.style.display = 'block';
+                            mainaudio.style.display = 'none';
+                            btn.style.display = 'none';
+                            btn3.style.display = 'none';
+                            items = [];
+                        })
+                        
+                        // -------------------------------------Every thing needed to setup the display------------------------------
+
+                        audio.appendChild(mainaudio);
+                        audio.appendChild(btn);
+                        audio.appendChild(btn3);
+                        mainaudio.innerHTML = '<source src="' + URL.createObjectURL(blob) + '" type="video/webm"/>'
+                        
+                        // ------------------------------------------------------------------------------------------------------------
+                    }
+
+                }
+                recorder.start(100);
+                setTimeout(() => {
+                    recorder.stop();
+                }, 10000);
+            })
+        })
+    </script>
+
+</body>
+
+</html>
+recorder.html
+Displaying recorder.html.
